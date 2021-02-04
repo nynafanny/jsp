@@ -27,8 +27,7 @@ import utilisateurs.modeles.User;
 @WebServlet(name = "ServletUsers",
      urlPatterns = {"/ServletUsers"},
      initParams = {
-         @WebInitParam(name = "ressourceDir", value = "C:\\Users\\amoss\\TPJsp")
-     }
+         @WebInitParam(name = "ressourceDir", value = "E:\\TP_JEE\\jsp1")  }
 )
 public class ServletUsers extends HttpServlet {
 
