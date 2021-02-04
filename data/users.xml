@@ -87,50 +87,8 @@
     <user>
         <id>foussou3</id>
         <login>foussou3</login>
-        <lastname>toto</lastname>
-        <firstname>toto</firstname>
-    </user>
-    <user>
-        <id>Nyfa</id>
-        <login>Nyfa</login>
-        <lastname>Fanny</lastname>
-        <firstname>nyna</firstname>
-    </user>
-    <user>
-        <id>youyou45</id>
-        <login>youyou45</login>
-        <lastname>Abel</lastname>
-        <firstname>bi</firstname>
-    </user>
-    <user>
-        <id>foussou3</id>
-        <login>foussou3</login>
         <lastname>Kouakou</lastname>
         <firstname>brice</firstname>
-    </user>
-    <user>
-        <id>Nyfa</id>
-        <login>Nyfa</login>
-        <lastname>Fanny</lastname>
-        <firstname>nyna</firstname>
-    </user>
-    <user>
-        <id>youyou45</id>
-        <login>youyou45</login>
-        <lastname>Abel</lastname>
-        <firstname>bi</firstname>
-    </user>
-    <user>
-        <id>foussou3</id>
-        <login>foussou3</login>
-        <lastname>Kouakou</lastname>
-        <firstname>brice</firstname>
-    </user>
-    <user>
-        <id>jgf2345678</id>
-        <login>jgf2345678</login>
-        <lastname>koul</lastname>
-        <firstname>mef</firstname>
     </user>
     <user>
         <id>jgf2345678</id>

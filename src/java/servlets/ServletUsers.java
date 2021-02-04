@@ -79,7 +79,7 @@ public class ServletUsers extends HttpServlet {
                 Collection<User> liste = Server.uh.getUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Tout est bien !";
+                message = "ça marche !";
             }
             else if (action.equals("chercherParLogin")) {
                 User user = rechercherUtilisateur(request);
@@ -87,15 +87,22 @@ public class ServletUsers extends HttpServlet {
                 liste.add(user);
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "tout est bien";
+                message = "ça marche!";
             }
             else if(action.equals("updateUtilisateur")){
                 modifierUser(request);
                 Collection<User> liste = Server.uh.getUsers();
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
-                message = "Tout est bien !";
-                
+                message = "ça marche!";
+                 }
+                else if (action.equals("supprimerUtilisateur")) {
+                SupprimerUser(request);
+                Collection<User> liste = Server.uh.getUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "ça marche !";
+           
             }
             else {
                 forwardTo = "index.jsp?action=todo";
@@ -196,9 +203,13 @@ public void creerUtilisateur(HttpServletRequest request) {
                 Logger.getLogger(ServletUsers.class.getName()).log(Level.SEVERE, null, ex);
            }
         }
-    public void supprimerUser(HttpServletRequest request){
-        
+    public boolean SupprimerUser(HttpServletRequest request) {
+        String login;
+        login = request.getParameter("login");
+
+        return Server.uh.removeUserFromLogin(login);
+
+           }
     }
-}
 
 
