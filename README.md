@@ -6,7 +6,9 @@ Dans ce TP, nous allons epérimenter JSP dans une application.
 2. Modifiez la valeur du paramètre ```ressourceDir``` dans la classe ```ServletUsers``` afin que le chemin corresponde au chemin où les sources du projets sont sauvegardées sur votre machine
 3. Compilez puis tester
 4. Observez ce qui se passe dans le folder du projet, que remarquez-vous ? 
---> Notez votre réponse dans le fichier README
+
+--> On remarque qu'un dossier build a été crée
+
 3. Commitez et push
 
 ## Partie 2: Implémentez les fonctionnalités manquantes

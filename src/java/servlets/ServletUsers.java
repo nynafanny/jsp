@@ -5,7 +5,12 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import static java.lang.System.out;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -62,7 +67,37 @@ public class ServletUsers extends HttpServlet {
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
-            } else {
+            } else if(action.equals("creerUtilisateursDeTest")){
+                creeUtilisateurDetest();
+                Collection<User> liste = Server.uh.getUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "les 3 utilisateurs ont été créés !";
+            }
+            else if (action.equals("creerUnUtilisateur")) {
+                creerUtilisateur(request);
+                Collection<User> liste = Server.uh.getUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "Tout est bien !";
+            }
+            else if (action.equals("chercherParLogin")) {
+                User user = rechercherUtilisateur(request);
+                ArrayList<User> liste = new ArrayList<User>();
+                liste.add(user);
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "tout est bien";
+            }
+            else if(action.equals("updateUtilisateur")){
+                modifierUser(request);
+                Collection<User> liste = Server.uh.getUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "Tout est bien !";
+                
+            }
+            else {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
             }
@@ -109,4 +144,61 @@ public class ServletUsers extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    
+    private void creeUtilisateurDetest(){
+        try {
+            User user1 = new User("Nyfa","Fanny", "nyna");
+            User user2 = new User("youyou45","Abel", "bi");
+            User user3 = new User("foussou3","Kouakou", "brice");
+            Server.uh.addUser(user1);
+            Server.uh.addUser(user2);
+            Server.uh.addUser(user3);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ServletUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
 }
+
+public void creerUtilisateur(HttpServletRequest request) {
+        String login, nom, prenom;
+        nom = request.getParameter("nom");
+        prenom = request.getParameter("prenom");
+        login = request.getParameter("login");
+        try {
+            User user = new User(login, nom, prenom);
+            Server.uh.addUser(user);
+            
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ServletUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    public User rechercherUtilisateur(HttpServletRequest request) {
+            String login;
+            login = request.getParameter("login");
+
+            return Server.uh.getUserFromLogin(login);
+
+    }
+    public void modifierUser(HttpServletRequest request) throws UnsupportedEncodingException{
+        //recupération des informations du user 
+          String login, nom, prenom;
+          nom = request.getParameter("nom");
+          prenom = request.getParameter("prenom");
+          login = request.getParameter("login");
+    //obtenir un user par son login
+        try{
+            User user = new User(login, nom, prenom);       
+            Server.uh.updateUser(user);     
+
+        }
+            catch (UnsupportedEncodingException ex) {
+                Logger.getLogger(ServletUsers.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+    public void supprimerUser(HttpServletRequest request){
+        
+    }
+}
+
+
